@@ -18,7 +18,7 @@ const app = express();
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'https://bholding-dcok39su8-ambroises-projects-be2c50f6.vercel.app',
+      'https://bholding.vercel.app',
       'http://localhost:3000',
       'https://b-holding-backend.onrender.com'
     ];
