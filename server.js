@@ -18,10 +18,12 @@ const app = express();
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'https://dashboard-58shx55uj-ambroises-projects-be2c50f6.vercel.app',
+      'https://dashboard-eight-smoky-78.vercel.app/',
       'http://localhost:3000',
-      'https://b-holding-backend.onrender.com'
-    ];
+      'https://b-holding-backend.onrender.com',
+      process.env.PROJECT_DOMAIN ? `https://${process.env.PROJECT_DOMAIN}.glitch.me` : null
+    ].filter(Boolean);
+
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -76,17 +78,13 @@ app.use((req, res, next) => {
   res.status(404).send("Sorry, can't find that!");
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-// Graceful shutdown
-process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received: closing HTTP server');
-  server.close(() => {
-    console.log('HTTP server closed');
-    mongoose.connection.close(false, () => {
-      console.log('MongoDB connection closed');
-      process.exit(0);
-    });
-  });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server URL: ${process.env.PROJECT_DOMAIN ? `https://${process.env.PROJECT_DOMAIN}.glitch.me` : 'http://localhost:' + PORT}`);
 });
+
+// Keep the server alive
+setInterval(() => {
+  console.log("Keeping the server alive...");
+}, 280000); // Ping every 4 minutes and 40 seconds
