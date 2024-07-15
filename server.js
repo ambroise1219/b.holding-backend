@@ -18,12 +18,10 @@ const app = express();
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'https://dashboard-eight-smoky-78.vercel.app/',
+      'https://dashboard-eight-smoky-78.vercel.app',
       'http://localhost:3000',
-      'https://b-holding-backend.onrender.com',
-      process.env.PROJECT_DOMAIN ? `https://${process.env.PROJECT_DOMAIN}.glitch.me` : null
-    ].filter(Boolean);
-
+      'https://b-holding-backend.onrender.com'
+    ];
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -45,12 +43,9 @@ app.use((req, res, next) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
-})
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('Could not connect to MongoDB', err));
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Could not connect to MongoDB', err));
 
 // Routes
 app.use('/api/rentals', rentalRoutes);
@@ -70,21 +65,21 @@ app.get('/test', (req, res) => {
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).json({ message: 'Something went wrong!', error: err.message });
 });
 
 // 404 Route
-app.use((req, res, next) => {
-  res.status(404).send("Sorry, can't find that!");
+app.use((req, res) => {
+  res.status(404).json({ message: "Sorry, can't find that!" });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  console.log(`Server URL: ${process.env.PROJECT_DOMAIN ? `https://${process.env.PROJECT_DOMAIN}.glitch.me` : 'http://localhost:' + PORT}`);
+  console.log(`Server URL: https://b-holding-backend.onrender.com`);
 });
 
-// Keep the server alive
+// Keep the server alive (optional for Render, as it doesn't sleep free instances)
 setInterval(() => {
   console.log("Keeping the server alive...");
 }, 280000); // Ping every 4 minutes and 40 seconds
