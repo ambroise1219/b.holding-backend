@@ -1,109 +1,72 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const https = require('https');
 const compression = require('compression');
-const morgan = require('morgan');
-const winston = require('winston');
+const helmet = require('helmet');
+const https = require('https');
 require('dotenv').config();
 
-const rentalRoutes = require('./routes/rentals');
-const vehicleRoutes = require('./routes/vehicles');
-const saleRoutes = require('./routes/sales');
-const maintenanceRoutes = require('./routes/maintenances');
-const stockPouletsRoutes = require('./routes/stock-poulets');
-const ventesPouletsRoutes = require('./routes/ventes-poulets');
-const orderRoutes = require('./routes/orders');
-const livraisonRoutes = require('./routes/livraisons');
+const routes = {
+  rentals: require('./routes/rentals'),
+  vehicles: require('./routes/vehicles'),
+  sales: require('./routes/sales'),
+  maintenances: require('./routes/maintenances'),
+  stockPoulets: require('./routes/stock-poulets'),
+  ventesPoulets: require('./routes/ventes-poulets'),
+  orders: require('./routes/orders'),
+  livraisons: require('./routes/livraisons')
+};
 
 const app = express();
 
-// Logger configuration
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' })
-  ]
-});
-
 // CORS configuration
 const corsOptions = {
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      'https://bholding.vercel.app',
-      'http://localhost:3000',
-      'https://b-holding-backend.onrender.com'
-    ];
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: ['https://bholding.vercel.app', 'http://localhost:3000', 'https://b-holding-backend.onrender.com'],
   credentials: true,
   optionsSuccessStatus: 200
 };
 
 // Middleware
+app.use(helmet());
 app.use(cors(corsOptions));
-app.use(express.json());
-app.use(compression()); // Add compression
-app.use(morgan('tiny')); // Add efficient logging
-app.use(express.static('public', { maxAge: '1h' })); // Cache static responses
+app.use(express.json({ limit: '10mb' }));
+app.use(compression());
 
-// Custom logging middleware
-app.use((req, res, next) => {
-  logger.info(`${req.method} ${req.url}`, { 
-    ip: req.ip, 
-    userAgent: req.get('User-Agent') 
+// Logging middleware
+if (process.env.NODE_ENV !== 'production') {
+  app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    next();
   });
-  next();
-});
+}
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  poolSize: 10 // Increase connection pool for better performance
-}).then(() => logger.info('Connected to MongoDB'))
-  .catch(err => logger.error('Could not connect to MongoDB', err));
-
-// Reconnect to MongoDB if disconnected
-mongoose.connection.on('disconnected', () => {
-  logger.warn('MongoDB disconnected. Attempting to reconnect...');
-  mongoose.connect(process.env.MONGODB_URI, { autoReconnect: true });
-});
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Could not connect to MongoDB', err));
 
 // Routes
-app.use('/api/rentals', rentalRoutes);
-app.use('/api/vehicles', vehicleRoutes);
-app.use('/api/sales', saleRoutes);
-app.use('/api/maintenances', maintenanceRoutes);
-app.use('/api/stock-poulets', stockPouletsRoutes);
-app.use('/api/ventes-poulets', ventesPouletsRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/livraisons', livraisonRoutes);
-
-// Test route
-app.get('/test', (req, res) => {
-  res.json({ message: 'Server test route works' });
+Object.entries(routes).forEach(([name, router]) => {
+  app.use(`/api/${name}`, router);
 });
 
-// Ping route
+// Test route
 app.get('/ping', (req, res) => {
   res.status(200).send('pong');
 });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  logger.error(err.stack);
-  res.status(500).json({ message: 'Something went wrong!', error: err.message });
+  console.error(err.stack);
+  res.status(err.status || 500).json({ 
+    message: err.message || 'Something went wrong!',
+    error: process.env.NODE_ENV === 'production' ? {} : err
+  });
 });
 
 // 404 Route
@@ -111,37 +74,44 @@ app.use((req, res) => {
   res.status(404).json({ message: "Sorry, can't find that!" });
 });
 
-const PORT = process.env.PORT || 10000;
+// Determine if we're running on Render.com or locally
+const isRender = process.env.RENDER === 'true';
+const PORT = process.env.PORT || (isRender ? 10000 : 5000);
+
 const server = app.listen(PORT, () => {
-  logger.info(`Server is running on port ${PORT}`);
-  logger.info(`Server URL: https://b-holding-backend.onrender.com`);
+  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server URL: ${isRender ? 'https://b-holding-backend.onrender.com' : `http://localhost:${PORT}`}`);
 });
 
-// Keep the server alive
-function keepAlive() {
-  https.get('https://b-holding-backend.onrender.com/ping', (resp) => {
-    if (resp.statusCode === 200) {
-      logger.info('Server kept alive at ' + new Date().toISOString());
-    } else {
-      logger.warn('Failed to keep server alive:', resp.statusCode);
-    }
-  }).on('error', (err) => {
-    logger.error('Error in keep-alive ping:', err.message);
-  });
-}
+if (isRender) {
+  // Keep the server alive
+  function keepAlive() {
+    https.get('https://b-holding-backend.onrender.com/ping', (resp) => {
+      if (resp.statusCode === 200) {
+        console.log('Server kept alive at', new Date().toISOString());
+      } else {
+        console.log('Failed to keep server alive:', resp.statusCode);
+      }
+    }).on('error', (err) => {
+      console.log('Error in keep-alive ping:', err.message);
+    });
+  }
 
-// Execute the keepAlive function every 14 minutes
-const FOURTEEN_MINUTES = 14 * 60 * 1000;
-setInterval(keepAlive, FOURTEEN_MINUTES);
+  // Execute the keepAlive function every 14 minutes
+  const FOURTEEN_MINUTES = 14 * 60 * 1000;
+  setInterval(keepAlive, FOURTEEN_MINUTES);
+}
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
-  logger.info('SIGTERM signal received: closing HTTP server');
+  console.log('SIGTERM signal received: closing HTTP server');
   server.close(() => {
-    logger.info('HTTP server closed');
+    console.log('HTTP server closed');
     mongoose.connection.close(false, () => {
-      logger.info('MongoDB connection closed');
+      console.log('MongoDB connection closed');
       process.exit(0);
     });
   });
 });
+
+module.exports = app;

@@ -1,0 +1,110 @@
+{"level":"info","message":"Server is running on port 10000","timestamp":"2024-07-27T13:11:45.094Z"}
+{"level":"info","message":"Server URL: https://b-holding-backend.onrender.com","timestamp":"2024-07-27T13:11:45.099Z"}
+{"level":"error","message":"Could not connect to MongoDB option poolsize is not supported","stack":"MongoParseError: option poolsize is not supported\n    at parseOptions (C:\\Users\\alpha\\Desktop\\Projets Mobile\\location\\dashboard\\dashboard\\backend\\node_modules\\mongodb\\lib\\connection_string.js:272:15)\n    at new MongoClient (C:\\Users\\alpha\\Desktop\\Projets Mobile\\location\\dashboard\\dashboard\\backend\\node_modules\\mongodb\\lib\\mongo_client.js:51:63)\n    at NativeConnection.createClient (C:\\Users\\alpha\\Desktop\\Projets Mobile\\location\\dashboard\\dashboard\\backend\\node_modules\\mongoose\\lib\\drivers\\node-mongodb-native\\connection.js:306:14)\n    at NativeConnection.openUri (C:\\Users\\alpha\\Desktop\\Projets Mobile\\location\\dashboard\\dashboard\\backend\\node_modules\\mongoose\\lib\\connection.js:823:34)\n    at Mongoose.connect (C:\\Users\\alpha\\Desktop\\Projets Mobile\\location\\dashboard\\dashboard\\backend\\node_modules\\mongoose\\lib\\mongoose.js:448:15)\n    at Object.<anonymous> (C:\\Users\\alpha\\Desktop\\Projets Mobile\\location\\dashboard\\dashboard\\backend\\server.js:70:10)\n    at Module._compile (node:internal/modules/cjs/loader:1376:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)\n    at Module.load (node:internal/modules/cjs/loader:1207:32)\n    at Module._load (node:internal/modules/cjs/loader:1023:12)","timestamp":"2024-07-27T13:11:45.102Z"}
+{"level":"info","message":"Server is running on port 10000","timestamp":"2024-07-27T13:15:45.810Z"}
+{"level":"info","message":"Server URL: https://b-holding-backend.onrender.com","timestamp":"2024-07-27T13:15:45.814Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T13:15:45.818Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T13:15:45.820Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T13:15:45.820Z"}
+{"level":"info","message":"Server is running on port 10000","timestamp":"2024-07-27T13:17:02.601Z"}
+{"level":"info","message":"Server URL: https://b-holding-backend.onrender.com","timestamp":"2024-07-27T13:17:02.606Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T13:17:02.610Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T13:17:02.614Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T13:17:02.617Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T13:17:07.623Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T13:17:07.627Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T13:17:07.628Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T13:17:07.631Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T13:17:12.657Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T13:17:12.659Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T13:17:12.660Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T13:17:12.661Z"}
+{"level":"info","message":"Server is running on port 10000","timestamp":"2024-07-27T13:19:15.638Z"}
+{"level":"info","message":"Server URL: https://b-holding-backend.onrender.com","timestamp":"2024-07-27T13:19:15.643Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T13:21:47.446Z"}
+{"code":"ETIMEOUT","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T13:21:47.511Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T13:21:47.562Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T13:21:52.563Z"}
+{"level":"info","message":"Mongoose connected to DB","timestamp":"2024-07-27T13:24:09.755Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T13:24:09.759Z"}
+{"level":"info","message":"Server kept alive at 2024-07-27T13:33:17.365Z","timestamp":"2024-07-27T13:33:17.365Z"}
+{"level":"info","message":"Server kept alive at 2024-07-27T13:47:16.249Z","timestamp":"2024-07-27T13:47:16.249Z"}
+{"level":"info","message":"Server kept alive at 2024-07-27T14:01:16.311Z","timestamp":"2024-07-27T14:01:16.311Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2024-07-27T14:09:06.461Z"}
+{"level":"info","message":"Server URL: http://localhost:5000","timestamp":"2024-07-27T14:09:06.469Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:09:06.473Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:09:06.476Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:09:06.477Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:09:11.483Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:09:11.485Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:09:11.487Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:09:11.488Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:09:16.503Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:09:16.512Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:09:16.513Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:09:16.515Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:09:21.530Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:09:21.534Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:09:21.535Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:09:21.536Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:09:26.539Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:09:26.542Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:09:26.543Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:09:26.544Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:09:31.560Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:09:31.563Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:09:31.564Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:09:31.565Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:09:36.575Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:09:36.579Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:09:36.580Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:09:36.581Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:09:41.592Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:09:41.597Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:09:41.598Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:09:41.599Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:09:46.625Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:10:14.945Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:10:14.946Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:10:14.947Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:10:19.961Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:10:19.971Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:10:19.975Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:10:19.976Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:10:24.989Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:10:24.992Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:10:24.993Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:10:24.993Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:10:30.006Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:10:30.012Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:10:30.013Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:10:30.014Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:10:35.039Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:10:35.049Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:10:35.049Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:10:35.050Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:10:40.054Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:10:40.057Z"}
+{"code":"EREFUSED","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:10:40.058Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv EREFUSED _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:10:40.059Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:10:45.074Z"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:11:45.657Z"}
+{"code":"ETIMEOUT","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:11:45.658Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:11:45.659Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:11:50.667Z"}
+{"ip":"::1","level":"info","message":"GET /api/rentals","timestamp":"2024-07-27T14:12:22.533Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:12:51.645Z"}
+{"code":"ETIMEOUT","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:12:51.667Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:12:51.692Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:12:56.705Z"}
+{"ip":"::1","level":"info","message":"GET /api/rentals","timestamp":"2024-07-27T14:13:02.837Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:13:57.265Z"}
+{"code":"ETIMEOUT","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:13:57.266Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:13:57.268Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:14:02.283Z"}
+{"ip":"::1","level":"info","message":"GET /api/rentals","timestamp":"2024-07-27T14:14:10.514Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0"}
+{"level":"info","message":"Mongoose disconnected","timestamp":"2024-07-27T14:15:02.860Z"}
+{"code":"ETIMEOUT","hostname":"_mongodb._tcp.gestion.zuiic6l.mongodb.net","level":"error","message":"Could not connect to MongoDB querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","stack":"Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:275:17)","syscall":"querySrv","timestamp":"2024-07-27T14:15:02.861Z"}
+{"level":"error","message":"Mongoose connection error: Error: querySrv ETIMEOUT _mongodb._tcp.gestion.zuiic6l.mongodb.net","timestamp":"2024-07-27T14:15:02.862Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2024-07-27T14:15:07.869Z"}
+{"ip":"::1","level":"info","message":"GET /api/rentals","timestamp":"2024-07-27T14:15:12.111Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0"}
