@@ -1,6 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const https = require('https');
+const compression = require('compression');
+const morgan = require('morgan');
+const winston = require('winston');
 require('dotenv').config();
 
 const rentalRoutes = require('./routes/rentals');
@@ -13,6 +17,20 @@ const orderRoutes = require('./routes/orders');
 const livraisonRoutes = require('./routes/livraisons');
 
 const app = express();
+
+// Logger configuration
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' })
+  ]
+});
 
 // CORS configuration
 const corsOptions = {
@@ -35,17 +53,32 @@ const corsOptions = {
 // Middleware
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(compression()); // Add compression
+app.use(morgan('tiny')); // Add efficient logging
+app.use(express.static('public', { maxAge: '1h' })); // Cache static responses
 
-// Logging middleware
+// Custom logging middleware
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} request to ${req.url}`);
+  logger.info(`${req.method} ${req.url}`, { 
+    ip: req.ip, 
+    userAgent: req.get('User-Agent') 
+  });
   next();
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Could not connect to MongoDB', err));
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  poolSize: 10 // Increase connection pool for better performance
+}).then(() => logger.info('Connected to MongoDB'))
+  .catch(err => logger.error('Could not connect to MongoDB', err));
+
+// Reconnect to MongoDB if disconnected
+mongoose.connection.on('disconnected', () => {
+  logger.warn('MongoDB disconnected. Attempting to reconnect...');
+  mongoose.connect(process.env.MONGODB_URI, { autoReconnect: true });
+});
 
 // Routes
 app.use('/api/rentals', rentalRoutes);
@@ -62,9 +95,14 @@ app.get('/test', (req, res) => {
   res.json({ message: 'Server test route works' });
 });
 
+// Ping route
+app.get('/ping', (req, res) => {
+  res.status(200).send('pong');
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  logger.error(err.stack);
   res.status(500).json({ message: 'Something went wrong!', error: err.message });
 });
 
@@ -74,12 +112,36 @@ app.use((req, res) => {
 });
 
 const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log(`Server URL: https://b-holding-backend.onrender.com`);
+const server = app.listen(PORT, () => {
+  logger.info(`Server is running on port ${PORT}`);
+  logger.info(`Server URL: https://b-holding-backend.onrender.com`);
 });
 
-// Keep the server alive (optional for Render, as it doesn't sleep free instances)
-setInterval(() => {
-  console.log("Keeping the server alive...");
-}, 280000); // Ping every 4 minutes and 40 seconds
+// Keep the server alive
+function keepAlive() {
+  https.get('https://b-holding-backend.onrender.com/ping', (resp) => {
+    if (resp.statusCode === 200) {
+      logger.info('Server kept alive at ' + new Date().toISOString());
+    } else {
+      logger.warn('Failed to keep server alive:', resp.statusCode);
+    }
+  }).on('error', (err) => {
+    logger.error('Error in keep-alive ping:', err.message);
+  });
+}
+
+// Execute the keepAlive function every 14 minutes
+const FOURTEEN_MINUTES = 14 * 60 * 1000;
+setInterval(keepAlive, FOURTEEN_MINUTES);
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM signal received: closing HTTP server');
+  server.close(() => {
+    logger.info('HTTP server closed');
+    mongoose.connection.close(false, () => {
+      logger.info('MongoDB connection closed');
+      process.exit(0);
+    });
+  });
+});
