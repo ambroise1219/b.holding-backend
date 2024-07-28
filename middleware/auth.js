@@ -1,9 +1,11 @@
 const jwt = require('jsonwebtoken');
 
 const auth = (req, res, next) => {
+  console.log('Authenticating request...');
   const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (!token) {
+    console.log('No token provided');
     return res.status(401).json({ message: 'Aucun token fourni, autorisation refusée' });
   }
 
@@ -14,6 +16,7 @@ const auth = (req, res, next) => {
     next();
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
+      console.log('Token expired');
       return res.status(401).json({ message: 'Token expiré', expired: true });
     }
     console.error('Authentication error:', error);

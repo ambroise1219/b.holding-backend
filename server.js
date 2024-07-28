@@ -99,6 +99,12 @@ const PORT = process.env.PORT || (isRender ? 10000 : 5000);
 const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   console.log(`Server URL: ${isRender ? 'https://b-holding-backend.onrender.com' : `http://localhost:${PORT}`}`);
+  
+  // Log important configurations
+  console.log('CORS options:', corsOptions);
+  console.log('JWT_SECRET is set:', !!process.env.JWT_SECRET);
+  console.log('JWT_REFRESH_SECRET is set:', !!process.env.JWT_REFRESH_SECRET);
+  console.log('MONGODB_URI is set:', !!process.env.MONGODB_URI);
 });
 
 if (isRender) {
