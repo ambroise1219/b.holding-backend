@@ -7,6 +7,7 @@ const https = require('https');
 require('dotenv').config();
 
 const routes = {
+  auth: require('./routes/auth'),
   rentals: require('./routes/rentals'),
   vehicles: require('./routes/vehicles'),
   sales: require('./routes/sales'),
@@ -33,12 +34,13 @@ app.use(express.json({ limit: '10mb' }));
 app.use(compression());
 
 // Logging middleware
-if (process.env.NODE_ENV !== 'production') {
-  app.use((req, res, next) => {
-    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
-    next();
-  });
-}
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  if (req.method !== 'GET') {
+    console.log('Body:', JSON.stringify(req.body, null, 2));
+  }
+  next();
+});
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -51,13 +53,28 @@ mongoose.connect(process.env.MONGODB_URI, {
   .catch(err => console.error('Could not connect to MongoDB', err));
 
 // Routes
+console.log('Routes disponibles:');
 Object.entries(routes).forEach(([name, router]) => {
   app.use(`/api/${name}`, router);
+  console.log(`- /api/${name}`);
+  if (router.stack) {
+    router.stack.forEach((r) => {
+      if (r.route && r.route.path) {
+        console.log(`  * ${Object.keys(r.route.methods).join(', ')} /api/${name}${r.route.path}`);
+      }
+    });
+  }
 });
 
 // Test route
 app.get('/ping', (req, res) => {
   res.status(200).send('pong');
+});
+
+// Middleware for logging unmatched routes
+app.use((req, res, next) => {
+  console.log(`Route non trouvée: ${req.method} ${req.url}`);
+  next();
 });
 
 // Error handling middleware
@@ -78,6 +95,7 @@ app.use((req, res) => {
 const isRender = process.env.RENDER === 'true';
 const PORT = process.env.PORT || (isRender ? 10000 : 5000);
 
+// Create the server
 const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   console.log(`Server URL: ${isRender ? 'https://b-holding-backend.onrender.com' : `http://localhost:${PORT}`}`);
