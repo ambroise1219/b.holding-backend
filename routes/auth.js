@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const auth = require('../middleware/auth');
 
 // Test route
@@ -21,7 +22,8 @@ router.post('/register', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
-    const user = new User({ name, email, password, role });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ name, email, password: hashedPassword, role });
     await user.save();
     res.status(201).json({ message: 'User created successfully', userId: user._id });
   } catch (error) {
@@ -30,14 +32,17 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+  console.log('Login attempt received:', req.body);
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    console.log('User found:', user ? 'Yes' : 'No');
     if (!user) {
       return res.status(401).json({ message: 'Incorrect email or password' });
     }
 
     const isMatch = await user.comparePassword(password);
+    console.log('Password match:', isMatch);
     if (!isMatch) {
       return res.status(401).json({ message: 'Incorrect email or password' });
     }
@@ -54,6 +59,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: '7d' }
     );
 
+    console.log('Login successful, sending response');
     res.json({ 
       message: 'Login successful',
       token,
@@ -61,6 +67,7 @@ router.post('/login', async (req, res) => {
       user: { id: user._id, name: user.name, email: user.email, role: user.role, profileImage: user.profileImage }
     });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: 'Error logging in', error: error.message });
   }
 });
@@ -139,7 +146,8 @@ router.post('/create-user', auth, async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
-    const user = new User({ name, email, password, role });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ name, email, password: hashedPassword, role });
     await user.save();
     res.status(201).json({ message: 'User created successfully', userId: user._id });
   } catch (error) {
